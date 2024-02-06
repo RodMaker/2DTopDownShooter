@@ -18,6 +18,8 @@ public class PlayerController : MonoBehaviour
     private Vector2 mousePos;
     private float fireTimer;
 
+    public float health;
+
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -52,5 +54,27 @@ public class PlayerController : MonoBehaviour
     private void Shoot()
     {
         Instantiate(bulletPrefab, firingPoint.position, firingPoint.rotation);
+    }
+
+    private void OnCollisionEnter2D(Collision2D other)
+    {
+        if (other.gameObject.CompareTag("EnemyBullet"))
+        {
+            TakeDamage(25);
+        }
+        else if (other.gameObject.CompareTag("Enemy"))
+        {
+            TakeDamage(100);
+        }
+    }
+
+    public void TakeDamage(float damage)
+    {
+        health -= damage;
+
+        if (health <= 0)
+        {
+            Destroy(gameObject);
+        }
     }
 }
