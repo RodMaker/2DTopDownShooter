@@ -9,6 +9,8 @@ public class Enemy : MonoBehaviour
     public float rotateSpeed = 0.25f;
     private Rigidbody2D rb;
 
+    [SerializeField] private float health;
+
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -59,7 +61,17 @@ public class Enemy : MonoBehaviour
         }
         else if (other.gameObject.CompareTag("Bullet"))
         {
+            TakeDamage(100);
             Destroy(other.gameObject);
+        }
+    }
+
+    public void TakeDamage(float damage)
+    {
+        health -= damage;
+
+        if (health <= 0)
+        {
             Destroy(gameObject);
         }
     }
