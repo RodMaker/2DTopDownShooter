@@ -56,6 +56,7 @@ public class Enemy : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Player"))
         {
+            LevelManager.manager.GameOver();
             Destroy(other.gameObject);
             target = null;
         }
@@ -72,6 +73,7 @@ public class Enemy : MonoBehaviour
 
         if (health <= 0)
         {
+            LevelManager.manager.IncreaseScore(1);
             Destroy(gameObject);
         }
     }

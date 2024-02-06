@@ -93,6 +93,7 @@ public class RangedEnemy : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Player"))
         {
+            LevelManager.manager.GameOver();
             Destroy(other.gameObject);
             target = null;
         }
@@ -109,6 +110,7 @@ public class RangedEnemy : MonoBehaviour
 
         if (health <= 0)
         {
+            LevelManager.manager.IncreaseScore(3);
             Destroy(gameObject);
         }
     }

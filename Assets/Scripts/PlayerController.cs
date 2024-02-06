@@ -61,6 +61,7 @@ public class PlayerController : MonoBehaviour
         if (other.gameObject.CompareTag("EnemyBullet"))
         {
             TakeDamage(25);
+            Destroy(other.gameObject);
         }
         else if (other.gameObject.CompareTag("Enemy"))
         {
@@ -74,6 +75,7 @@ public class PlayerController : MonoBehaviour
 
         if (health <= 0)
         {
+            LevelManager.manager.GameOver();
             Destroy(gameObject);
         }
     }
